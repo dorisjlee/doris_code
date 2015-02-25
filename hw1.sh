@@ -8,14 +8,14 @@ n=0
 #	filename="${f%%.*}"
 #	echo $filename
 	for f  in *.fits;do
-		filename2="${f%%.*}"
+		filename="${f%%.*}"
         	#echo $filename2'.fits'
 		#echo $f
-		if [ !  -a $filename2'.w.cat' ]
+		if [ !  -f $filename'.w.cat' ]; #Use -f here not -a!!!!
 		#echo $filename2'.w.cat'
 		#if [  -a 'bob.txt' ]
 			then
-			echo 'not-match:'$filename2'.w.cat'
+			echo 'not-match:'$filename'.w.cat'
 			n=$(($n+1))
 			#echo $filename2'.w.cat'
 			#echo 'not matched'
