@@ -1,0 +1,30 @@
+Doing array addition on two randomly generated array
+- the array.f90 is the regular file
+- the omp_array.f90 is the one with OPENMP to speed up the last step (array addition) 
+- The performance of the parallel is only slightly better: 
+dorislee@edison10:~/doris_code/openmp/array> time gfortran -o array array.f90 ; ./array
+
+real	0m0.149s
+user	0m0.040s
+sys	0m0.052s
+
+dorislee@edison10:~/doris_code/openmp/array> time gfortran -o omp_array omp_array.f90 ; ./omp_array
+
+real	0m0.141s
+user	0m0.040s
+sys	0m0.044s
+- But if I go beyond DIMENSION (10000,10000) array it starts complaining about memory usage
+
+Trying array multiplication instead
+dorislee@edison10:~/doris_code/openmp/array> time gfortran -o omp_array omp_array.f90 ; ./omp_array
+
+real	0m0.152s
+user	0m0.036s
+sys	0m0.048s
+dorislee@edison10:~/doris_code/openmp/array> time gfortran -o array array.f90 ; ./array
+
+real	0m0.140s
+user	0m0.052s
+sys	0m0.032s
+
+The parallel version is actually slower; Overhead cost is probably to high
