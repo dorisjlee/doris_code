@@ -1,13 +1,14 @@
 PROGRAM MCint
 ! Using the Monte Carlos Integration Method to find PI
 IMPLICIT NONE
-  INTEGER  i
+  INTEGER  i,j,n
   REAL R
+  REAL tmp_x, tmp_y
   INTEGER H
   REAL ans
-  REAL, DIMENSION (10,10)::X,Y
+  REAL, DIMENSION (10)::X,Y
   real                               :: rndReal
-  real, dimension(10,10)                :: rndRealArr
+  real, dimension(10)                :: rndRealArr
   integer                            :: seedSize
   integer, dimension(:), allocatable :: seed
   integer, dimension(8)              :: dtVals
@@ -17,14 +18,20 @@ IMPLICIT NONE
   !write (*,*) 'Random Array: ', X 
   call RANDOM_NUMBER(rndRealArr)
   Y= rndRealArr
-  write (*,*) 'Random Array: ', Y
-  ans = R(4.,2.)
-  print *,ans
-  print *,H(0.1,0.01)
-  print *,H(10.,3.)
+  n=0
+!  print *,Y(1)
   do i =1,10
-	print *,X(i)
+!	do j = 1,10
+		!write (*,*), i , "$"
+		tmp_x = X(i)
+                tmp_y = Y(i)
+		!write (*,*),"x",tmp_x
+		!write (*,*),"y",tmp_y
+		n=n+1
+!	end do  
+		print *, "-----------" 
   end do 
+  print *,n
 
 END
 INTEGER FUNCTION H(x,y)
@@ -42,7 +49,6 @@ REAL FUNCTION R(x,y)
 	write (*,*),"x:",x
 	write (*,*),"y:",y
 	R  =x**2+y**2
-	Print *,R
 	RETURN 
 END
 
