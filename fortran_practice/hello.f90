@@ -1,3 +1,7 @@
+        !Note that on NERSC machine, the GNU compilers must be loaded 
+        !module swap PrgEnv-intel PrgEnv-gnu
+        ! Then this should work
+        !gfortran hello.f90 
       Program Hello
 	! Variable declaration
 	implicit none !prevents fortran to default ij,k,l,m,n as integers (always include this)
